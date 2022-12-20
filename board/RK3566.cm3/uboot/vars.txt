@@ -1,0 +1,2 @@
+overlays=
+fdtfile=rockchip/rk3566-radxa-cm3-spa.dtb

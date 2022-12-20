@@ -1,0 +1,4 @@
+menu "Packages"
+source "$BR2_EXTERNAL_RK3308_PATH/package/rkbin/Config.in"
+source "$BR2_EXTERNAL_RK3308_PATH/package/rktools/Config.in"
+endmenu

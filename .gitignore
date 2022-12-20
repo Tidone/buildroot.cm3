@@ -1,0 +1,12 @@
+*~
+.ssh
+board/raspberrypi3-64
+overlays/lib/firmware/rockchip
+overlays/usr/share/alsa
+uboot.tgz
+old
+#*#
+*/#*#
+*/*/#*#
+wpa_supplicant.conf
+new.new

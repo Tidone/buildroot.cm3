@@ -1,0 +1,18 @@
+diff --git a/boot/uboot/uboot.mk b/boot/uboot/uboot.mk
+--- a/boot/uboot/uboot.mk
++++ b/boot/uboot/uboot.mk
+@@ -20,6 +20,14 @@
+ UBOOT_DEPENDENCIES = host-pkgconf $(BR2_MAKE_HOST_DEPENDENCY)
+ UBOOT_MAKE = $(BR2_MAKE)
+ 
++UBOOT_DEPENDENCIES += rkbin
++define UBOOT_COPY_ATF_FIRMWARE
++	echo "Copying BL31"
++	cp $(BINARIES_DIR)/rkbin/bin/rk35/rk3568_bl31_v1.24.elf $(@D)/bl31.elf
++	cp $(BINARIES_DIR)/rkbin/bin/rk35/rk3566_ddr_1056MHz_v1.08.bin $(@D)/rk3568_ddr_1560MHz_v1.12.bin
++endef
++UBOOT_PRE_BUILD_HOOKS += UBOOT_COPY_ATF_FIRMWARE
++
+ ifeq ($(BR2_TARGET_UBOOT_CUSTOM_TARBALL),y)
+ # Handle custom U-Boot tarballs as specified by the configuration
+ UBOOT_TARBALL = $(call qstrip,$(BR2_TARGET_UBOOT_CUSTOM_TARBALL_LOCATION))

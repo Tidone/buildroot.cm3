@@ -1,0 +1,1 @@
+source "$BR2_EXTERNAL_RK3308_PATH/package/Config.in"
