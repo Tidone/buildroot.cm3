@@ -8,20 +8,18 @@ Based on buildroot, this directory is an external buildroot tree - it integrates
 This repo is forked from [Flatmax's RK3566 buildroot system](https://github.com/flatmax/buildroot.rockchip).
 It is heavily modified to support a newer version of U-Boot.\
 This enables us to use some fancy new U-Boot features, like compressed kernel images and better handling of U-Boot environments.
-This branch uses the full Radxa 4.19 Kernel. Everything that works on the official Debian image, should work here too.
-
+This branch uses the full Radxa 5.10 Kernel. Everything that works on the official Debian image, should work here too.
 
 - Custom U-Boot v22.04
-- Full Radxa Linux Kernel 4.19
+- Full Radxa Linux Kernel 5.10
 
 # Caveats
 
 This Kernel continuously spams the following messages on the serial output and on the Kernel logs:
 ```
-[  144.113433] dwmmc_rockchip fe2b0000.dwmmc: could not set regulator OCR (-22)
-[  144.113500] dwmmc_rockchip fe2b0000.dwmmc: failed to enable vmmc regulator
+[  173.930553] mmc_host mmc0: Bus speed (slot 0) = 375000Hz (slot req 400000Hz, actual 375000HZ div = 0)
 ```
-[This Kernel mailing list message](https://lore.kernel.org/lkml/20210805124650.GM26252@sirena.org.uk/T/) describes the same issue and some possible fixes.
+You have to disable mmc0 in the device tree or insert a card into the SD-card slot to fix this.
 
 # Initial Setup
 
