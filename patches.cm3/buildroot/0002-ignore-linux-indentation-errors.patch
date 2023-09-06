@@ -1,0 +1,12 @@
+diff --git a/linux/linux.mk b/linux/linux.mk
+--- a/linux/linux.mk
++++ b/linux/linux.mk
+@@ -173,7 +173,7 @@
+ # sanitize the arguments passed from user space in registers.
+ # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=82435
+ ifeq ($(BR2_TOOLCHAIN_GCC_AT_LEAST_8),y)
+-LINUX_MAKE_ENV += KCFLAGS=-Wno-attribute-alias
++LINUX_MAKE_ENV += KCFLAGS="-Wno-attribute-alias -Wno-misleading-indentation"
+ endif
+ 
+ ifeq ($(BR2_LINUX_KERNEL_DTB_OVERLAY_SUPPORT),y)

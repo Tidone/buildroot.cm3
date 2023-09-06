@@ -6,13 +6,22 @@ Based on buildroot, this directory is an external buildroot tree - it integrates
 ## Differences from the Original Repo
 
 This repo is forked from [Flatmax's RK3566 buildroot system](https://github.com/flatmax/buildroot.rockchip).
-It is heavily modified to support a newer version of U-Boot and the mainline Linux Kernel 6.1\
+It is heavily modified to support a newer version of U-Boot.\
 This enables us to use some fancy new U-Boot features, like compressed kernel images and better handling of U-Boot environments.
+This branch uses the full Radxa 4.19 Kernel. Everything that works on the official Debian image, should work here too.
 
 
 - Custom U-Boot v22.04
-- Mainline Linux Kernel 6.1
+- Full Radxa Linux Kernel 4.19
 
+# Caveats
+
+This Kernel continuously spams the following messages on the serial output and on the Kernel logs:
+```
+[  144.113433] dwmmc_rockchip fe2b0000.dwmmc: could not set regulator OCR (-22)
+[  144.113500] dwmmc_rockchip fe2b0000.dwmmc: failed to enable vmmc regulator
+```
+[This Kernel mailing list message](https://lore.kernel.org/lkml/20210805124650.GM26252@sirena.org.uk/T/) describes the same issue and some possible fixes.
 
 # Initial Setup
 
@@ -38,6 +47,8 @@ sudo apt install -y patch texinfo wget git gawk curl lzma bc quilt expect
 
 ```
 cd buildroot
+git reset --hard
+rm -f .applied_patches_list
 source ../buildroot.cm3/setup.cm3.sh .
 mkdir ../buildroot.dl
 utils/brmake
@@ -53,8 +64,7 @@ Connect to the console uart with a serial cable (1500000 Baud, 8n1). Or add the 
 
 ## Device Tree Overlays
 
-This repo uses a minimal Linux DTBO, which disables most hardware features.\
-You can adapt `board/RK3566.cm3/linux/rk3566-radxa-cm3-spa.dts` to enable/disable anything you need.
+This repo uses the default CM3-on-Raspberry-CM4-IO-Board Linux DTBO.\
 
 ## SSH RSA Keys
 
