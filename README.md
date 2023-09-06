@@ -13,6 +13,17 @@ This enables us to use some fancy new U-Boot features, like compressed kernel im
 - Custom U-Boot v22.04
 - Mainline Linux Kernel 6.1
 
+## Differences Between the Branches
+
+The branch `full_radxa_4_19_kernel` uses the stable Radxa 4.19 kernel instead of the upstream 6.1. It also uses the default kernel configs and device trees. All features that work on the original Debian image should also work on that branch.  
+The branch `full_radxa_5_10_kernel` uses the dev Radxa 5.10 kernel instead of the upstream 6.1. It also uses the default kernel configs and device trees. All features that work on the original Debian image should also work on that branch.
+
+If you are switching between the branches you have to clean the buildroot directory to make sure all additional patches are applied correctly!
+```
+cd buildroot
+git reset --hard
+rm -f .applied_patches_list
+```
 
 # Initial Setup
 
